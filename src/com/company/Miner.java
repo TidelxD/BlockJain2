@@ -36,7 +36,7 @@ public class Miner {
         int i = 0;
         while (!is_less(sha256(block.toSmallString() + i),block.getTarget())){
             i++;
-            System.out.println("Failed " + i + ": " + sha256(block.toSmallString() + i));
+            //System.out.println("Failed " + i + ": " + sha256(block.toSmallString() + i));
         }
         block.setNonce(i);
         block.setHash(sha256(block.toBigString()));

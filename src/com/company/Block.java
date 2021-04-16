@@ -1,22 +1,27 @@
 package com.company;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 public class Block {
     int block_number;
     int Nonce;
     String target;
     String timestamp;
-    String data;
+    Transactions data;
     String prev_hash;
     String hash;
 
-    public Block(String target, String timestamp, String data, String prev_hash) {
+    public Block(String target, Transactions data, String prev_hash) {
         this.target = target;
-        this.timestamp = timestamp;
+        Timestamp timeS = new Timestamp(System.currentTimeMillis()); // since 1970 with millis
+        this.timestamp = String.valueOf(timeS.getTime());
         this.data = data;
         this.prev_hash = prev_hash;
     }
     public Block(){
-
+        Timestamp timeS = new Timestamp(System.currentTimeMillis());
+        this.timestamp = String.valueOf(timeS.getTime());
     }
 
     public int getBlock_number() {
@@ -51,11 +56,12 @@ public class Block {
         this.timestamp = timestamp;
     }
 
-    public String getData() {
+    public Transactions getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Transactions data) {
+        //TODO verify every transaction
         this.data = data;
     }
 
@@ -77,20 +83,20 @@ public class Block {
 
     @Override
     public String toString() {
-        return "Block{" +
-                "block_number=" + block_number +
-                ", Nonce=" + Nonce +
-                ", target='" + target + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", data='" + data + '\'' +
-                ", prev_hash='" + prev_hash + '\'' +
-                ", hash='" + hash + '\'' +
-                '}';
+        return "\nBlock{" +
+                "\n\t block_number=" + block_number +
+                "\n\t Nonce=" + Nonce +
+                "\n\t target=" + target +
+                "\n\t timestamp=" + timestamp +
+                "\n\t data=" + data +
+                "\n\t prev_hash=" + prev_hash +
+                "\n\t hash=" + hash +
+                "}\n";
     }
     public String toBigString(){
-        return block_number+target+timestamp+data+prev_hash+Nonce;
+        return target+timestamp+data+prev_hash+Nonce;
     }
     public String toSmallString(){
-        return block_number+target+timestamp+data+prev_hash ;
+        return target+timestamp+data+prev_hash ;
     }
 }
